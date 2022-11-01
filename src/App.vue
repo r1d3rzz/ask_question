@@ -1,26 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="container">
+    <component
+      :is="screen[position]"
+      @changePosition="changePosition"
+      @askQuestion="askQuestion"
+      :question="question"
+    />
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import InitialView from "./components/InitialView";
+import ResultView from "./components/ResultView";
+import ConfirmView from "./components/ConfirmView";
+import "./assets/style.css";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  components: { InitialView, ConfirmView, ResultView },
+  data() {
+    return {
+      screen: ["InitialView", "ConfirmView", "ResultView"],
+      question: "",
+      position: 0,
+    };
+  },
+
+  methods: {
+    changePosition(value) {
+      this.position = value;
+    },
+
+    askQuestion(value) {
+      this.question = value;
+    },
+  },
+};
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
 </style>

@@ -6,6 +6,8 @@
         @changePosition="changePosition"
         @askQuestion="askQuestion"
         :question="question"
+        :result="result"
+        @showResult="showResult"
       />
     </transition>
   </div>
@@ -21,8 +23,17 @@ export default {
   components: { InitialView, ConfirmView, ResultView },
   data() {
     return {
+      list: [
+        "Yes",
+        "No",
+        "Maybe",
+        "Not sure..try again",
+        "Ask a friend",
+        "Call the police",
+      ],
       screen: ["InitialView", "ConfirmView", "ResultView"],
       question: "",
+      result: "",
       position: 0,
     };
   },
@@ -34,6 +45,24 @@ export default {
 
     askQuestion(value) {
       this.question = value;
+    },
+
+    getRandomValue() {
+      return this.list[Math.floor(Math.random() * this.list.length)];
+    },
+
+    generateResult() {
+      let rand = this.getRandomValue();
+      if (rand !== "") {
+        while (rand === this.result) {
+          rand = this.getRandomValue();
+        }
+      }
+      this.result = rand;
+    },
+
+    showResult() {
+      this.generateResult();
     },
   },
 };

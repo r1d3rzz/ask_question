@@ -4,7 +4,9 @@
     <form @submit.prevent="askQuestion">
       <input type="text" class="form-control" v-model="question" />
       <div v-if="question">
-        <button class="btn btn-dark">Ask</button>
+        <button class="btn btn-dark animate__animated animate__fadeIn">
+          Ask
+        </button>
       </div>
 
       <div class="error" v-if="error">You question is to short</div>

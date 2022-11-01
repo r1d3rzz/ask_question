@@ -1,10 +1,12 @@
 <template>
   <div>
     <h1>Your Question is:</h1>
-    <div class="viwer">{{ question }}</div>
+    <div class="viwer fs-3">{{ question }}?</div>
     <hr />
-    <button class="btn" @click="goToResultView">Decide it</button>
-    <button class="btn" @click="goBack">Ask new Question</button>
+    <div class="animate__animated animate__bounceIn animate__delay-1s">
+      <button class="btn" @click="goToResultView">Decide it</button>
+      <button class="btn" @click="goBack">Ask new Question</button>
+    </div>
   </div>
 </template>
 

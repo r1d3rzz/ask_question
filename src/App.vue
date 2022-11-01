@@ -1,11 +1,13 @@
 <template>
   <div class="container">
-    <component
-      :is="screen[position]"
-      @changePosition="changePosition"
-      @askQuestion="askQuestion"
-      :question="question"
-    />
+    <transition name="fade" appear mode="out-in">
+      <component
+        :is="screen[position]"
+        @changePosition="changePosition"
+        @askQuestion="askQuestion"
+        :question="question"
+      />
+    </transition>
   </div>
 </template>
 
@@ -38,4 +40,23 @@ export default {
 </script>
 
 <style>
+.fade-enter-from {
+  opacity: 0;
+}
+.fade-enter-active {
+  transition: 0.5s;
+}
+.fade-enter-to {
+  opacity: 1;
+}
+
+.fade-enter-from {
+  opacity: 1;
+}
+.fade-enter-active {
+  transition: 0.5s;
+}
+.fade-enter-to {
+  opacity: 0;
+}
 </style>

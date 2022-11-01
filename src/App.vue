@@ -5,6 +5,7 @@
         :is="screen[position]"
         @changePosition="changePosition"
         @askQuestion="askQuestion"
+        @handleToast="handleToast"
         :question="question"
         :result="result"
         @showResult="showResult"
@@ -39,6 +40,15 @@ export default {
   },
 
   methods: {
+    handleToast(values) {
+      this.$toast.show(values.message, {
+        type: values.type,
+        position: "top",
+        duration: 2000,
+        pauseOnHover: false,
+      });
+    },
+
     changePosition(value) {
       this.position = value;
     },

@@ -25,12 +25,20 @@ export default {
 
   methods: {
     askQuestion() {
-      if (this.question.length < 3) {
-        return (this.error = true);
+      if (this.question.length <= 3) {
+        return this.$emit("handleToast", {
+          type: "error",
+          message: "Your Question is Too Short",
+        });
+      } else if (this.question.length >= 50) {
+        return this.$emit("handleToast", {
+          type: "error",
+          message: "Your Question is Too Long",
+        });
+      } else {
+        this.$emit("changePosition", 1);
+        this.$emit("askQuestion", this.question);
       }
-
-      this.$emit("changePosition", 1);
-      this.$emit("askQuestion", this.question);
     },
   },
 };
